@@ -6,7 +6,7 @@ import { Filter } from './Filter/Filter';
 import css from './App.module.css';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
-import { addWantedValue } from 'redux/filterSlice';
+import { addValue } from 'redux/filterSlice';
 
 export const App = () => {
   const [contacts, setContacts] = useState([]);
@@ -33,17 +33,19 @@ export const App = () => {
     setContacts(contacts => [...contacts, newContact]);
   };
 
-  const handleFilterChange = evt => {setFilter(evt.target.value);
+  const handleFilterChange = evt => {
+    setFilter(evt.target.value);
     const value = evt.target.value;
-    dispatch(addWantedValue(value));}
+    dispatch(addValue(value));
+  };
   const handleContactsFiltered = () =>
     contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
 
-  const handleContactItemDelete = taskId => {
-    setContacts(contacts.filter(contact => contact.id !== taskId));
-    dispatch(deleteContact(taskId));
+  const handleContactItemDelete = contactsId => {
+    setContacts(contacts.filter(contact => contact.id !== contactsId));
+    dispatch(deleteContact(contactsId));
   };
 
   useEffect(() => {
