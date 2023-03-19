@@ -49,14 +49,14 @@ export const App = () => {
   };
 
   useEffect(() => {
-    const list = window.localStorage.getItem('contacts-list');
+    const list = localStorage.getItem('contacts-list');
     if (!list) return;
     setContacts(JSON.parse(list));
   }, []);
 
   useEffect(() => {
     const contactListStringified = JSON.stringify(contacts);
-    window.localStorage.setItem('contacts-list', contactListStringified);
+    localStorage.setItem('contacts-list', contactListStringified);
   }, [contacts]);
   console.log(contacts);
   return (

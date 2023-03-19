@@ -11,7 +11,7 @@ const contactsSlice = createSlice({
       const newContact = action.payload;
       const stateContacts = [...state, newContact];
       state.push(newContact);
-      window.localStorage.setItem(
+      localStorage.setItem(
         'contacts-list',
         JSON.stringify(stateContacts)
       );
@@ -19,7 +19,7 @@ const contactsSlice = createSlice({
     deleteContact(state, action) {
       const id = action.payload;
       state = state.filter(contact => contact.id !== id);
-      window.localStorage.setItem('contacts-list', JSON.stringify(state));
+      localStorage.setItem('contacts-list', JSON.stringify(state));
       return state;
     },
   },
